@@ -1,0 +1,15 @@
+[Unit]
+Description=Call Logger Service
+After=network.target
+
+[Service]
+ExecStart=/usr/bin/php /path-to-code/ami-manager.php
+Restart=always
+User=root
+Group=root
+StandardOutput=append:/var/log/ami-manager.log
+StandardError=append:/var/log/ami-manager.log
+
+[Install]
+WantedBy=multi-user.target
+

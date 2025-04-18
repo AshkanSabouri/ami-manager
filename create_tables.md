@@ -1,0 +1,14 @@
+CREATE TABLE `tblcalls` (
+    `ID` INT NOT NULL AUTO_INCREMENT,
+    `Call_ID` VARCHAR(255) NOT NULL,
+    `Type` VARCHAR(255) NOT NULL,
+    `S_Name` VARCHAR(255) NOT NULL,
+    `S_Number` VARCHAR(255) NOT NULL,
+    `D_Name` VARCHAR(255) NOT NULL,
+    `D_Number` VARCHAR(255) NOT NULL,
+    `Duration` VARCHAR(255) NOT NULL,
+    `Time` VARCHAR(255) NOT NULL,
+    `Date` VARCHAR(255) NOT NULL,
+    PRIMARY KEY (`ID`)
+);
+
