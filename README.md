@@ -33,3 +33,58 @@ This PHP script connects to the Asterisk AMI (Asterisk Manager Interface), liste
    ```bash
    git clone https://github.com/your-username/ami-manager.git
    cd ami-manager
+
+2. **Install dependencies**
+  ```bash
+  composer install
+
+3. **Configure your AMI | Database connection in config.php**
+  ```php
+  $ami_host = '';
+  $ami_port = ;
+  $ami_username = '';
+  $ami_password = '';
+
+  $db_host = '';
+  $db_name = '';
+  $db_username = '';
+  $db_password = '';
+  $tbl_name = '';
+
+4. **(Optional) Set notification URL (Nodejs Push Notification)**
+  ```php
+  $url = 'http://your-server.com/notify';
+
+5. **Run The Script**
+  ```php
+  php ami-manager.php
+
+**If You Need to Run This Service as a Daemon, Do This**
+
+### 5.1. Edit `ami-manager.service` File
+
+Edit the `ExecStart` path to Code to your actual PHP script location.
+
+```ini
+  [Unit]
+  Description=Call Logger Service
+  After=network.target
+
+  [Service]
+  ExecStart=/usr/bin/php /path-to-code/ami-manager/index.php
+  Restart=always
+  User=root
+  Group=root
+  StandardOutput=append:/var/log/ami-manager.log
+  StandardError=append:/var/log/ami-manager.log
+
+  [Install]
+  WantedBy=multi-user.target
+
+### 5.2. Copy And Enable Service
+```bash
+  cp ami-manager.service /etc/systemd/system/
+  systemctl daemon-reload
+  systemctl enable ami-manager.service
+  systemctl start ami-manager.service
+
